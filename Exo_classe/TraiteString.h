@@ -6,13 +6,13 @@
 
 class TraiteString {
 private:
-    std::string expr;                       // Expression mathématique à traiter
+    std::string expr;                       // Expression 
     std::string::iterator expr_index;       // Iterateur pour parcourir l'expression
 
 public:
     TraiteString(std::string exp); // Constructeur
-    std::string reverse();
-    bool palindrome();
+    std::string reverse();                   // renverse une chaine de caractère et la retourne
+    bool palindrome();                      //Verifie si une chaine un palindrome
     bool isoperateur(char c) const;         // Vérifie si un caractère est un opérateur
     int priorite(char c) const;             // Retourne la priorité d'un opérateur
     int calcul(int op1, int op2, char opr); // Effectue un calcul basé sur l'opérateur

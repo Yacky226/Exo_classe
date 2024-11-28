@@ -1,5 +1,5 @@
 #include "TraiteString.h"
-#include "pch.h" 
+#include "pch.h" //la pile
 #include <iostream>
 #include <string>
 #include <stdexcept> // Pour la gestion des exceptions
@@ -7,39 +7,42 @@
 // Constructeur qui initialise l'expression et l'itérateur
 TraiteString::TraiteString(std::string exp) : expr(exp), expr_index(expr.begin()) {}
 
+//Renverse une chaine de caractère à l'aide d'une pile
 std::string TraiteString::reverse()
 {
      Stack<char>P;
     int i = 0;
     std::string ch;
+
+    //Parcourir chaque caractère de la chaine et les push
     while (expr_index !=expr.end())
     {
         P.push(*expr_index);
         expr_index++;
     }
-
+    //remettre les caractères dans une nouvelle chaine
     while (!P.is_empty())
     {
-
         ch.push_back(P.top());
         P.pop();
     }
     return ch;
 }
 
-
+//Verifie si une chaine est un palindrome
 
 bool TraiteString::palindrome()
 {
-    // Déclaration des itérateurs pour std::string
+    // Déclaration de l'itérateur
     std::string::iterator it2 = expr.end();
 
-    // Réduire it2 pour pointer sur le dernier élément valide
+    // Réduction de it2 pour pointer sur le dernier élément valide
     --it2;
 
     // Parcourir la chaîne en comparant les caractères
-    while (expr_index < it2) {
-        if (*expr_index != *it2) // Comparaison des caractères pointés par it1 et it2
+    while (expr_index < it2) 
+    {
+        if (*expr_index != *it2) // Comparaison des caractères pointés par les iterateurs
             return false;
         ++expr_index; // Avancer le premier itérateur
         --it2; // Reculer le deuxième itérateur
@@ -49,12 +52,14 @@ bool TraiteString::palindrome()
 }
 
 // Méthode pour vérifier si un caractère est un opérateur mathématique
-bool TraiteString::isoperateur(char c) const {
+bool TraiteString::isoperateur(char c) const 
+{
     return c == '+' || c == '-' || c == '*' || c == '/';
 }
 
 // Méthode pour déterminer la priorité des opérateurs
-int TraiteString::priorite(char c) const {
+int TraiteString::priorite(char c) const 
+{
     if (c == '*' || c == '/') return 2; // Multiplication et division ont la priorité la plus élevée
     if (c == '+' || c == '-') return 1; // Addition et soustraction ont une priorité moyenne
     if (c == '(') return 0;             // Les parenthèses ouvrantes ont la priorité la plus faible
@@ -62,7 +67,8 @@ int TraiteString::priorite(char c) const {
 }
 
 // Méthode pour effectuer un calcul entre deux opérandes en fonction de l'opérateur
-int TraiteString::calcul(int op1, int op2, char opr) {
+int TraiteString::calcul(int op1, int op2, char opr) 
+{
     switch (opr) 
     {
         case '+': return op1 + op2; // Addition
@@ -96,7 +102,7 @@ bool TraiteString::Isvalid()
             while (isdigit(*expr_index)) 
             {
                 output += *expr_index++; // Ajouter le chiffre à la sortie
-                if (expr_index == expr.end()) break;
+                if (expr_index == expr.end()) break;//Pour ne pas depasser la limite d'iteration
             }
             output += ' '; //  un espace pour séparer les opérandes
         }

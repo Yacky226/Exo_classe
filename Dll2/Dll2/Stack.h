@@ -7,51 +7,48 @@ template<class T>
 class Stack
 {
 private:
-	T* tab;
-	int nbelemt;
-	int capacite;
+	T* tab;//la pile
+	int nbelemt;//le nombre d'element de la pile
+	int capacite;//la capacité de la pile
 public:
-	Stack();
-	bool is_empty()const;
-	bool is_full()const;
-	int size()const;
-	void pop();
-	T top();
-	void print();
-	void push(T);
-   
-
-	~Stack();
+	Stack();//Constructeur
+	bool is_empty()const;//Tester si la pile est vide 
+	bool is_full()const;//Tester si la pile est pleine
+	int size()const;//retourne la taille de la pile
+	void pop();//retirer l'element en tête de la pile
+	T top();//renvoie l'element en tête de la pile
+	void print();//Afficher tous les elements de la pile
+	void push(T);//ajouter un element à la pile
+	~Stack();//Destructeur
 };
 
 
+//Initialiser la pile
 template<class T>
 inline Stack<T>::Stack() :nbelemt(-1), capacite(100)
 {
 	tab = new T[capacite];
-
 }
 
+//Verifier si la pile est vide
 template<class T>
 inline bool Stack<T>::is_empty() const
 {
-
 	return nbelemt == -1;
 }
-
+//Verifier si la pile est pleine
 template<class T>
 inline bool Stack<T>::is_full() const
 {
 	return nbelemt == capacite;
 }
-
+//la taille de la pile
 template<class T>
 inline int Stack<T>::size() const
 {
-
 	return nbelemt+1;
 }
-
+//Retirer un element de la pile
 template<class T>
 inline void Stack<T>::pop()
 {
@@ -62,12 +59,10 @@ inline void Stack<T>::pop()
 	else
 	{
 		throw std::underflow_error("La pile est vide");
-
 	}
-		
-
 }
 
+// retourne l'element en tête
 template<class T>
 inline T Stack<T>::top()
 {
@@ -83,6 +78,7 @@ inline T Stack<T>::top()
 	return elm;
 }
 
+// afficher tous les elements de la pile
 template<class T>
 inline void Stack<T>::print()
 {
@@ -93,6 +89,7 @@ inline void Stack<T>::print()
 	}
 }
 
+//Ajouter un element à la pile
 template<class T>
 inline void Stack<T>::push(T elm)
 {
@@ -100,12 +97,9 @@ inline void Stack<T>::push(T elm)
 		tab[++nbelemt] = elm;
 	else
 		throw std::overflow_error("la pile est pleine");
-
 }
 
-
-
-
+//Destructeur
 template<class T>
 inline Stack<T>::~Stack()
 {
